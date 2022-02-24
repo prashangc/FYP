@@ -4,15 +4,17 @@ import '../model/HospitalsDataModel.dart';
 import '../screens/HospitalDetailsScreen.dart';
 
 class AllHospitalsCircularList extends StatefulWidget {
-  final HospitalsDataModel hospitalsData;
+  final HospitalDataModel hospitalsData;
   const AllHospitalsCircularList(this.hospitalsData);
 
   @override
   _AllHospitalsCircularListState createState() =>
-      _AllHospitalsCircularListState();
+      _AllHospitalsCircularListState(hospitalsData: hospitalsData);
 }
 
 class _AllHospitalsCircularListState extends State<AllHospitalsCircularList> {
+  final HospitalDataModel hospitalsData;
+  _AllHospitalsCircularListState({required this.hospitalsData});
   @override
   Widget build(BuildContext context) {
     return Expanded(

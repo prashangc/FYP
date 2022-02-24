@@ -323,7 +323,7 @@ class _PatientTabViewState extends State<PatientTabView> {
                                   onSaved: (v) {
                                     _usernameSignUp = v;
                                   },
-                                  cursorHeight: 2,
+                                  cursorHeight: 22,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.person),
                                     border: OutlineInputBorder(
@@ -347,7 +347,7 @@ class _PatientTabViewState extends State<PatientTabView> {
                                   onSaved: (v) {
                                     _email = v;
                                   },
-                                  cursorHeight: 2,
+                                  cursorHeight: 22,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.mail),
                                     border: OutlineInputBorder(
@@ -372,7 +372,7 @@ class _PatientTabViewState extends State<PatientTabView> {
                                     _passwordSignUp = v;
                                   },
                                   obscureText: true,
-                                  cursorHeight: 2,
+                                  cursorHeight: 22,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.lock),
                                     border: OutlineInputBorder(
@@ -397,7 +397,7 @@ class _PatientTabViewState extends State<PatientTabView> {
                                     _confirmPassword = v;
                                   },
                                   obscureText: true,
-                                  cursorHeight: 2,
+                                  cursorHeight: 22,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.lock),
                                     border: OutlineInputBorder(

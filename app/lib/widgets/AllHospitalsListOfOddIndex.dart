@@ -3,7 +3,7 @@ import 'package:app/screens/HospitalDetailsScreen.dart';
 import 'package:flutter/material.dart';
 
 class AllHospitalsListOfOddIndex extends StatefulWidget {
-  final HospitalsDataModel hospitalsData;
+  final HospitalDataModel hospitalsData;
   const AllHospitalsListOfOddIndex(this.hospitalsData);
   @override
   _AllHospitalsListOfOddIndexState createState() =>

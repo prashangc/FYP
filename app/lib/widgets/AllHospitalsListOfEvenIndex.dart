@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../screens/HospitalDetailsScreen.dart';
 
 class AllHospitalsListOfEvenIndex extends StatefulWidget {
-  final HospitalsDataModel hospitalsData;
+  final HospitalDataModel hospitalsData;
   const AllHospitalsListOfEvenIndex(this.hospitalsData);
   @override
   _AllHospitalsListOfEvenIndexState createState() =>

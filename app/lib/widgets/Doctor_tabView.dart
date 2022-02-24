@@ -324,7 +324,7 @@ class _DoctorTabViewState extends State<DoctorTabView> {
                                   onSaved: (v) {
                                     _usernameSignUp = v;
                                   },
-                                  cursorHeight: 2,
+                                  cursorHeight: 22,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.person),
                                     border: OutlineInputBorder(
@@ -348,7 +348,7 @@ class _DoctorTabViewState extends State<DoctorTabView> {
                                   onSaved: (v) {
                                     _email = v;
                                   },
-                                  cursorHeight: 2,
+                                  cursorHeight: 22,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.mail),
                                     border: OutlineInputBorder(
@@ -373,7 +373,7 @@ class _DoctorTabViewState extends State<DoctorTabView> {
                                     _passwordSignUp = v;
                                   },
                                   obscureText: true,
-                                  cursorHeight: 2,
+                                  cursorHeight: 22,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.lock),
                                     border: OutlineInputBorder(
@@ -398,7 +398,7 @@ class _DoctorTabViewState extends State<DoctorTabView> {
                                     _confirmPassword = v;
                                   },
                                   obscureText: true,
-                                  cursorHeight: 2,
+                                  cursorHeight: 22,
                                   decoration: const InputDecoration(
                                     prefixIcon: Icon(Icons.lock),
                                     border: OutlineInputBorder(

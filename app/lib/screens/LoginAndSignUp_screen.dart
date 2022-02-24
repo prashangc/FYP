@@ -37,59 +37,62 @@ class LoginAndSignUpScreen extends StatelessWidget {
             ),
           ),
         ),
-        body: Column(
-          children: [
-            Container(
-              width: 280,
-              decoration: BoxDecoration(
-                color: Colors.red,
-                borderRadius: BorderRadius.circular(
-                  25.0,
+        body: Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              Container(
+                width: 280,
+                decoration: BoxDecoration(
+                  color: Colors.red,
+                  borderRadius: BorderRadius.circular(
+                    25.0,
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TabBar(
+                    indicator: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        25.0,
+                      ),
+                      color: Colors.red[400],
+                    ),
+                    tabs: const [
+                      Tab(
+                        child: Text(
+                          'PATIENT',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      Tab(
+                        child: Text(
+                          'DOCTOR',
+                          style: TextStyle(
+                            fontSize: 22,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: TabBar(
-                  indicator: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      25.0,
-                    ),
-                    color: Colors.red[400],
-                  ),
-                  tabs: const [
-                    Tab(
-                      child: Text(
-                        'PATIENT',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                    Tab(
-                      child: Text(
-                        'DOCTOR',
-                        style: TextStyle(
-                          fontSize: 22,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
+              const Expanded(
+                child: TabBarView(
+                  children: [
+                    PatientTabView(),
+                    DoctorTabView(),
                   ],
                 ),
               ),
-            ),
-            const Expanded(
-              child: TabBarView(
-                children: [
-                  PatientTabView(),
-                  DoctorTabView(),
-                ],
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

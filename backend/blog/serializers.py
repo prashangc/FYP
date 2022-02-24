@@ -27,8 +27,19 @@ class HospitalSerializers(serializers.ModelSerializer):
     class Meta:
         model = Hospital
         fields = "__all__"
+        # fields = ('id', 'hospital_name', 'hospital_image',  'hospital_detail', 'favourite')
+        depth = 1
 
-
+class FavouriteSerializers(serializers.ModelSerializer):
+    # members = serializers.SerializerMethodField()
+    class Meta:
+        model = Favourite
+        fields = ('id', 'favourite', 'hospital')
+        depth = 1
+    # def to_representation(self, instance):
+    #     response = super().to_representation(instance)
+    #     response['user'] = UserSerializers(instance.user).data
+    #     return response 
 
 # class UserSerializers(serializers.ModelSerializer):
 #     class Meta:
