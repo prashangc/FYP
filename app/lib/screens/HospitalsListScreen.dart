@@ -1,5 +1,6 @@
 import 'package:app/widgets/AllHospitalsListOfEvenIndex.dart';
 import 'package:app/widgets/AllHospitalsListOfOddIndex.dart';
+import 'package:app/screens/FavouriteHospitalScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../state/details_state.dart';
@@ -42,8 +43,31 @@ class _HospitalsListScreenState extends State<HospitalsListScreen> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          title: const Text('Hospitals'),
+          iconTheme: const IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          backgroundColor: Colors.white,
+          title: const Text(
+            'Hospitals',
+            style: TextStyle(color: Colors.black),
+          ),
           elevation: 0.0,
+          actions: <Widget>[
+            IconButton(
+              onPressed: () {
+                // Navigator.push(
+                //     context,
+                //     MaterialPageRoute(
+                //         builder: (context) => FavouriteHospitals()));
+                Navigator.of(context).pushNamed(FavouriteHospitals.routeName,
+                    arguments: hospitalLists);
+              },
+              icon: const Icon(
+                Icons.favorite,
+                color: Colors.black,
+              ),
+            ),
+          ],
           // backgroundColor: Colors.white,
         ),
         body: ListView.builder(

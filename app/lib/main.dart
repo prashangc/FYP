@@ -1,3 +1,5 @@
+import 'package:app/screens/EnterSymptomsScreen.dart';
+import 'package:app/screens/FavouriteHospitalScreen.dart';
 import 'package:app/screens/HospitalDetailsScreen.dart';
 import 'package:app/screens/HospitalsListScreen.dart';
 import 'package:app/screens/home_screen.dart';
@@ -47,6 +49,8 @@ class MyApp extends StatelessWidget {
           HospitalsListScreen.routeName: (ctx) => const HospitalsListScreen(),
           HospitalDetailsScreen.routeName: (ctx) =>
               const HospitalDetailsScreen(),
+          FavouriteHospitals.routeName: (ctx) => const FavouriteHospitals(),
+          EnterSymptomsScreen.routeName: (ctx) => const EnterSymptomsScreen(),
         },
       ),
     );

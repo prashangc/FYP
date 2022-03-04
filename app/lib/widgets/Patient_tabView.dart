@@ -12,6 +12,8 @@ class PatientTabView extends StatefulWidget {
 }
 
 class _PatientTabViewState extends State<PatientTabView> {
+  double signUpContainerHeight = 315;
+  double signUpPositionTop = 310;
   bool isVisible = true;
   bool isSignUpVisible = false;
 
@@ -24,6 +26,39 @@ class _PatientTabViewState extends State<PatientTabView> {
   String? _passwordSignUp;
   String? _email;
   String? _confirmPassword;
+
+  void _guestLogin() async {
+    bool islogin = await Provider.of<DetailsState>(context, listen: false)
+        .guestLogin(_username.toString(), _password.toString());
+    if (!islogin) {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+      // Navigator.of(context).pushReplacementNamed(const HomeScreen().routeName);
+    } else {
+      showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              title: const Text(
+                "Register an account.",
+              ),
+              actions: [
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                  child: const Text(
+                    "Ok",
+                    style: TextStyle(
+                      fontSize: 18.0,
+                    ),
+                  ),
+                ),
+              ],
+            );
+          });
+    }
+  }
 
   void _loginNow() async {
     var isValid = _form.currentState?.validate();
@@ -233,10 +268,6 @@ class _PatientTabViewState extends State<PatientTabView> {
                       isVisible = !isVisible;
                       isSignUpVisible = !isSignUpVisible;
                     });
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const SignUpScreen()));
                   },
                   child: const Text(
                     'Create a Patient account?',
@@ -259,6 +290,24 @@ class _PatientTabViewState extends State<PatientTabView> {
                 ),
                 const SizedBox(
                   height: 15.0,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const HomeScreen()));
+
+                    _guestLogin();
+                  },
+                  child: const Text(
+                    'View as Guest',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      letterSpacing: 1.2,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -293,8 +342,9 @@ class _PatientTabViewState extends State<PatientTabView> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 0.0),
                       child: Container(
+                        // duration: const Duration(milliseconds: 3000),
                         width: double.infinity,
-                        height: 315,
+                        height: signUpContainerHeight,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(
@@ -415,7 +465,7 @@ class _PatientTabViewState extends State<PatientTabView> {
                       ),
                     ),
                     Positioned(
-                      top: 310.0,
+                      top: signUpPositionTop,
                       left: 85.0,
                       child: SizedBox(
                         width: 240.0,
@@ -428,7 +478,13 @@ class _PatientTabViewState extends State<PatientTabView> {
                                 borderRadius: BorderRadius.circular(12)),
                           ),
                           onPressed: () {
-                            setState(() {});
+                            var isValid = _formSignUp.currentState?.validate();
+                            isValid!
+                                ? setState(() {})
+                                : setState(() {
+                                    signUpContainerHeight = 400;
+                                    signUpPositionTop = 400;
+                                  });
                             print('tapped');
                             _registerNow();
                           },
@@ -452,10 +508,6 @@ class _PatientTabViewState extends State<PatientTabView> {
                       isSignUpVisible = !isSignUpVisible;
                       isVisible = !isVisible;
                     });
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const SignUpScreen()));
                   },
                   child: const Text(
                     'Go to Login.',

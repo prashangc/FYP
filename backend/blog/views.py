@@ -1,16 +1,15 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import *
-from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication 
-from .models import MedicalNewsImageSlider, Hospital, Favourite
+from .models import *
+from rest_framework import viewsets, mixins
 
 # Create your views here.
-
-class RegisterDoctor(APIView):
+class RegisterUser(APIView):
     def post(self,request):
-        serializers = PatientSerializers(data=request.data)
+        serializers = UserSerializers(data=request.data)
         if serializers.is_valid():
             serializers.save()
             return Response({'error': False}) 
@@ -20,6 +19,7 @@ class RegisterDoctor(APIView):
 class MedicalNewsImagesViewsList(viewsets.ModelViewSet):    
     queryset = MedicalNewsImageSlider.objects.all() 
     serializer_class = MedicalNewsImagesSerializers    
+
 
 class HospitalViewsList(APIView):    
     permission_classes = [IsAuthenticated, ]
@@ -41,15 +41,15 @@ class HospitalViewsList(APIView):
             data.append(hospital) 
         return Response(serializer.data)
 
-class AddToFavourite(viewsets.ModelViewSet):
-    queryset = Favourite.objects.all() 
-    serializer_class = FavouriteSerializers
-    # permission_classes = [IsAuthenticated, ]
-    # authentication_classes = [TokenAuthentication, ]
+class AddToFavourite(APIView):
+    # queryset = Favourite.objects.all() 
+    # serializer_class = FavouriteSerializers
+    permission_classes = [IsAuthenticated, ]
+    authentication_classes = [TokenAuthentication, ]
     def post(self,request):
         try:
-            query = Favourite.objects.all() 
-            serializer = FavouriteSerializers(query,many=True)
+            # query = Favourite.objects.all() 
+            # serializer = FavouriteSerializers(query,many=True)
             data=request.data  
             # data = request.data
             # print(data)
@@ -58,8 +58,8 @@ class AddToFavourite(viewsets.ModelViewSet):
             hospital_obj = Hospital.objects.get(id=hospital_id)
             fav_obj = Favourite.objects.filter(hospital=hospital_obj).filter(user=c_user).first()
             if fav_obj:
-                old_like = fav_obj.favourite
-                fav_obj.favourite = not old_like
+                old_fav = fav_obj.favourite
+                fav_obj.favourite = not old_fav
                 fav_obj.save()
             else:
                 Favourite.objects.create(
@@ -69,7 +69,6 @@ class AddToFavourite(viewsets.ModelViewSet):
                 )     
             response_msg = {'error': False}
         except:
-            response_msg = {'error': True}
+            response_msg = {'error': True}  
         return Response(response_msg) 
-
-
+    

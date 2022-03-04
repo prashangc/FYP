@@ -1,6 +1,9 @@
 import 'package:app/state/details_state.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:like_button/like_button.dart';
+import 'package:localstorage/localstorage.dart';
 import 'package:provider/provider.dart';
 
 class HospitalDetailsScreen extends StatefulWidget {
@@ -13,6 +16,8 @@ class HospitalDetailsScreen extends StatefulWidget {
 }
 
 class _HospitalDetailsScreenState extends State<HospitalDetailsScreen> {
+  LocalStorage storages = LocalStorage("usertoken");
+
   bool isReadMore = false;
   bool isLiked = false;
 
@@ -66,83 +71,90 @@ class _HospitalDetailsScreenState extends State<HospitalDetailsScreen> {
                         ),
                       ),
                       const SizedBox(width: 20.0),
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(
-                                FontAwesomeIcons.locationArrow,
-                                color: Colors.white,
-                                size: 15.0,
-                              ),
-                              const SizedBox(width: 10.0),
-                              SizedBox(
-                                width: 200.0,
-                                height: 50.0,
-                                child: Center(
-                                  child: Text(
-                                    hospitalData.hospitalName.toString(),
-                                    overflow: TextOverflow.clip,
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      color: Colors.white,
+                      Container(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              children: [
+                                const Icon(
+                                  FontAwesomeIcons.hospital,
+                                  color: Colors.white,
+                                  size: 15.0,
+                                ),
+                                const SizedBox(width: 10.0),
+                                SizedBox(
+                                  width: 200.0,
+                                  height: 40.0,
+                                  child: Align(
+                                    alignment: const Alignment(-1, 0),
+                                    child: Text(
+                                      hospitalData.hospitalName.toString(),
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: const [
-                              Icon(
-                                FontAwesomeIcons.locationArrow,
-                                color: Colors.white,
-                                size: 15.0,
-                              ),
-                              SizedBox(width: 10.0),
-                              SizedBox(
-                                width: 200.0,
-                                height: 50.0,
-                                child: Text(
-                                  '99999999',
-                                  overflow: TextOverflow.clip,
-                                  style: TextStyle(
-                                    fontSize: 18.0,
-                                    color: Colors.white,
-                                  ),
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              children: [
+                                const Icon(
+                                  FontAwesomeIcons.locationArrow,
+                                  color: Colors.white,
+                                  size: 15.0,
                                 ),
-                              ),
-                            ],
-                          ),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              const Icon(
-                                FontAwesomeIcons.locationArrow,
-                                color: Colors.white,
-                                size: 15.0,
-                              ),
-                              const SizedBox(width: 10.0),
-                              SizedBox(
-                                width: 200.0,
-                                height: 50.0,
-                                child: Center(
-                                  child: Text(
-                                    hospitalData.hospitalName.toString(),
-                                    overflow: TextOverflow.clip,
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      color: Colors.white,
+                                const SizedBox(width: 10.0),
+                                SizedBox(
+                                  width: 200.0,
+                                  height: 40.0,
+                                  child: Align(
+                                    alignment: const Alignment(-1, 0),
+                                    child: Text(
+                                      hospitalData.address.toString(),
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.white,
+                                      ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                            const SizedBox(height: 8),
+                            Row(
+                              children: [
+                                const Icon(
+                                  FontAwesomeIcons.mailBulk,
+                                  color: Colors.white,
+                                  size: 15.0,
+                                ),
+                                const SizedBox(width: 10.0),
+                                SizedBox(
+                                  width: 200.0,
+                                  height: 40.0,
+                                  child: Align(
+                                    alignment: const Alignment(-1, 0),
+                                    child: Text(
+                                      hospitalData.hospitalName.toString(),
+                                      overflow: TextOverflow.clip,
+                                      style: const TextStyle(
+                                        fontSize: 18.0,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -159,49 +171,55 @@ class _HospitalDetailsScreenState extends State<HospitalDetailsScreen> {
                       ),
                       color: Colors.white,
                     ),
-                    child:
-
-                        //  LikeButton(
-                        //   // onTap: (isLiked) async {
-                        //   //   Provider.of<DetailsState>(context, listen: false)
-                        //   //       .addLike(hospitalData.id!);
-                        //   //   return !isLiked;
-                        //   // },
-                        //   size: 40.0,
-                        //   circleColor: const CircleColor(
-                        //       start: Colors.white, end: Colors.red),
-                        //   bubblesColor: const BubblesColor(
-                        //     dotPrimaryColor: Colors.red,
-                        //     dotSecondaryColor: Colors.red,
-                        //   ),
-                        //   likeBuilder: (bool isliked) {
-                        //     return hospitalData.like == false
-                        //         ? const Icon(
-                        //             Icons.favorite_border,
-                        //             color: Colors.green,
-                        //             size: 40.0,
-                        //           )
-                        //         : const Icon(
-                        //             Icons.favorite,
-                        //             color: Colors.blue,
-                        //             size: 40.0,
-                        //           );
-                        //   },
-                        // ),
-                        Center(
-                      child: GestureDetector(
-                        onTap: () {
-                          Provider.of<DetailsState>(context, listen: false)
-                              .addLike(hospitalData.id!);
-                        },
-                        child: Icon(
+                    child: LikeButton(
+                      onTap: (isLiked) async {
+                        var token = storages.getItem('token');
+                        print("printing of token : $token");
+                        token == "20b621741534024a9a89f0b05f8630cb6f96cfc2"
+                            ? Fluttertoast.showToast(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 48, 48, 48),
+                                msg: "Register an account",
+                                toastLength: Toast.LENGTH_SHORT,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                fontSize: 20.0,
+                              )
+                            : Provider.of<DetailsState>(context, listen: false)
+                                .addLike(hospitalData.id!);
+                        return !isLiked;
+                      },
+                      size: 40.0,
+                      circleColor: const CircleColor(
+                          start: Color.fromARGB(255, 34, 32, 32),
+                          end: Colors.red),
+                      bubblesColor: const BubblesColor(
+                        dotPrimaryColor: Colors.red,
+                        dotSecondaryColor: Colors.red,
+                      ),
+                      likeBuilder: (bool isliked) {
+                        return Icon(
                           hospitalData.favourite!
                               ? Icons.favorite
                               : Icons.favorite_border,
                           color: Colors.red,
-                        ),
-                      ),
+                        );
+                      },
                     ),
+                    //     Center(
+                    //   child: GestureDetector(
+                    //     onTap: () {
+                    //       Provider.of<DetailsState>(context, listen: false)
+                    //           .addLike(hospitalData.id!);
+                    //     },
+                    //     child: Icon(
+                    //       hospitalData.favourite!
+                    //           ? Icons.favorite
+                    //           : Icons.favorite_border,
+                    //       color: Colors.red,
+                    //     ),
+                    //   ),
+                    // ),
                   ),
                 )
               ],

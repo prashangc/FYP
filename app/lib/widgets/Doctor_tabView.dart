@@ -13,6 +13,8 @@ class DoctorTabView extends StatefulWidget {
 }
 
 class _DoctorTabViewState extends State<DoctorTabView> {
+  double signUpContainerHeight = 315;
+  double signUpPositionTop = 310;
   bool isVisible = true;
   bool isSignUpVisible = false;
 
@@ -295,7 +297,7 @@ class _DoctorTabViewState extends State<DoctorTabView> {
                       padding: const EdgeInsets.fromLTRB(25.0, 20.0, 25.0, 0.0),
                       child: Container(
                         width: double.infinity,
-                        height: 315,
+                        height: signUpContainerHeight,
                         decoration: const BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.all(
@@ -416,7 +418,7 @@ class _DoctorTabViewState extends State<DoctorTabView> {
                       ),
                     ),
                     Positioned(
-                      top: 310.0,
+                      top: signUpPositionTop,
                       left: 85.0,
                       child: SizedBox(
                         width: 240.0,
@@ -429,6 +431,13 @@ class _DoctorTabViewState extends State<DoctorTabView> {
                                 borderRadius: BorderRadius.circular(12)),
                           ),
                           onPressed: () {
+                            var isValid = _formSignUp.currentState?.validate();
+                            isValid!
+                                ? setState(() {})
+                                : setState(() {
+                                    signUpContainerHeight = 400;
+                                    signUpPositionTop = 400;
+                                  });
                             print('tapped');
                             _registerNow();
                           },
@@ -452,10 +461,6 @@ class _DoctorTabViewState extends State<DoctorTabView> {
                       isSignUpVisible = !isSignUpVisible;
                       isVisible = !isVisible;
                     });
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => const SignUpScreen()));
                   },
                   child: const Text(
                     'Go to Login.',

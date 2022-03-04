@@ -1,3 +1,4 @@
+import 'package:app/screens/EnterSymptomsScreen.dart';
 import 'package:app/screens/HospitalsListScreen.dart';
 import 'package:app/widgets/app_drawer.dart';
 import 'package:carousel_slider/carousel_slider.dart';
@@ -85,26 +86,42 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Padding(
               padding: const EdgeInsets.fromLTRB(40.0, 40.0, 40.0, 20.0),
-              child: TextFormField(
-                validator: (v) {
-                  if (v!.isEmpty) {
-                    return 'Enter symtoms';
-                  }
-                  return null;
-                },
-                onSaved: (v) {
-                  // _username = v;
-                },
-                cursorHeight: 22,
-                decoration: const InputDecoration(
-                  suffixIcon: Icon(Icons.search),
-                  border: OutlineInputBorder(
+              child: GestureDetector(
+                onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const EnterSymptomsScreen())),
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  width: double.infinity,
+                  height: 60.0,
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
                     borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
+                      Radius.circular(16.0),
                     ),
+                    boxShadow: [
+                      BoxShadow(
+                        blurRadius: 0.7,
+                      ),
+                    ],
                   ),
-                  labelText: 'Enter Symptoms',
-                  labelStyle: TextStyle(fontSize: 20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: const [
+                      Text(
+                        "Search by Symptoms",
+                        style: TextStyle(
+                          fontSize: 22.0,
+                          color: Color.fromARGB(255, 124, 123, 123),
+                        ),
+                      ),
+                      Icon(
+                        FontAwesomeIcons.search,
+                        color: Color.fromARGB(255, 124, 123, 123),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
